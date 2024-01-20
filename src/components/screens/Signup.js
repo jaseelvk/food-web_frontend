@@ -1,7 +1,6 @@
-import React,{useState,useContext} from 'react'
-import {Link,useNavigate} from 'react-router-dom'
+import React from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import axios from 'axios'
 
 export default function Signup() {
   return (
@@ -203,13 +202,8 @@ font-size: 20px;
 const ButtonContainer =  styled.div`
 display: flex;
 justify-content: center;
-`
-const ErrorMessage = styled.p`
-font-size: 17px;
-color: red;
-margin-bottom: 25px;
-text-align: center;
-`
+`;
+
 
 const SubmitButton = styled.button`
 background: #ffaa11;

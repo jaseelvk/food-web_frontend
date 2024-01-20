@@ -1,7 +1,7 @@
-import React,{useState,useContext} from 'react'
-import {Link,useNavigate} from 'react-router-dom'
+import React from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import axios from 'axios'
+
 
 export default function Login() {
   return (
@@ -23,7 +23,7 @@ export default function Login() {
                 <InputContanier>
                     <TextInput type="password" placeholder="Enter Your Password" />
                 </InputContanier>       
-                <LoginButton to='/signup'>Sign In</LoginButton>     
+                <LoginButton to='/'>Sign In</LoginButton>     
                 <ButtonContainer>
                     <SubmitButton>Login Up</SubmitButton>
                     </ButtonContainer>                         
@@ -201,13 +201,8 @@ font-size: 20px;
 const ButtonContainer =  styled.div`
 display: flex;
 justify-content: center;
-`
-const ErrorMessage = styled.p`
-font-size: 17px;
-color: red;
-margin-bottom: 25px;
-text-align: center;
-`
+`;
+
 
 const SubmitButton = styled.button`
 background: #ffaa11;
@@ -229,4 +224,4 @@ font-weight: 600;
     font-size: 16px;
     
 }
-`
+`;
