@@ -273,7 +273,7 @@ align-items: center;
 const SubmitButton = styled.button`
 display: inline-block;
 border-radius: 10px;
-background-color: #381a5a;
+background-color: #1b4040;
 color: #ffaa11;
 padding: 14px 28px;
 font-size: 20px;

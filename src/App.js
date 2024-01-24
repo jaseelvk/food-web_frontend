@@ -10,6 +10,7 @@ import Edit from "./components/screens/Edit";
 import Favourite from "./components/screens/Favorite";
 import Mypost from "./components/screens/MyPost";
 import Profile from "./components/screens/Profile";
+import EditProfile from "./components/screens/EditProfile";
 
 export const userContext = React.createContext()
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
     <Route path='/favorite' element={<Favourite/>} />
     <Route path='/mypost' element={<Mypost/>} />
     <Route path='/profile' element={<Profile/>} />
+    <Route path='/editprofile/edit' element={<EditProfile/>} />
   </Routes>
 </Router>
 
