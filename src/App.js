@@ -6,6 +6,8 @@ import Dishes from './components/screens/Dishes'
 import Dish from './components/screens/Dish'
 import Createpost from "./components/screens/CreatePost";
 import Delete from "./components/screens/Delete";
+import Edit from "./components/screens/Edit";
+import Favourite from "./components/screens/Favorite";
 
 export const userContext = React.createContext()
 export default function App() {
@@ -37,8 +39,8 @@ export default function App() {
     <Route path='/login' element={<Login />} />
     <Route path='/dishes' element={<Dishes/>} />
     <Route path="/delete/:id" element={<Delete/>} />
-
-  
+    <Route path='/edit/:id' element={<Edit/>} />
+    <Route path='/favorite' element={<Favourite/>} />
   </Routes>
 </Router>
 
