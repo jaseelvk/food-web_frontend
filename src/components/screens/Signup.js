@@ -13,8 +13,8 @@ export default function Signup() {
             </LeftContainer>
             <RightContainer>
                 <LoginContainer>
-                    <LoginHeading>Wlcome To The FoodCourt..!</LoginHeading>
-                    <LoginInfo>Please Signing If You Not Account...!</LoginInfo>
+                    <LoginHeading>Welcome To The FoodCourt..!</LoginHeading>
+                    <LoginInfo>Please Signing If You Not an Account...!</LoginInfo>
                     <Form>
                         <InputContanier>
                             <TextInput type="text" placeholder="Enter Your Name" />
@@ -96,7 +96,7 @@ border-radius: 50%;
 `;
 const RightContainer = styled.div`
 background: #1b4040;
-width: 40%;
+width: 20%;
 display: flex;
 align-items: flex-end;
 justify-content: center;
