@@ -4,38 +4,38 @@ import styled from 'styled-components'
 
 export default function Signup() {
   return (
-    <Container>
-        <LeftContainer>
-            <HeaderContainer>
-                <Logo src= {require("../images/logo.jpg")}
-                />
-            </HeaderContainer>
-        </LeftContainer>
-        <RightContainer>
-            <LoginContainer>
-                <LoginHeading>Wlcome To The FoodCourt..!</LoginHeading>
-                <LoginInfo>Please Signing If You Not Account...!</LoginInfo>
-                <Form>
-                    <InputContanier>
-                        <TextInput type="text" placeholder="Enter Your Name" />
-                    </InputContanier>
-                    <InputContanier>
-                         <TextInput type="email" placeholder="Enter Your Eamil" />
-                    </InputContanier>     
-                    <InputContanier>
-                        <TextInput type="email" placeholder="Enter Your Password" />
-                    </InputContanier>       
-                    <LoginButton to='/login'>Log In</LoginButton>     
-                    <ButtonContainer>
-                        <SubmitButton>Sign Up</SubmitButton>
-                        </ButtonContainer>                         
-                </Form>
-            </LoginContainer>
+        <Container>
+            <LeftContainer>
+                <HeaderContainer>
+                    <Logo src= {require("../images/logo.jpg")}
+                    />
+                </HeaderContainer>
+            </LeftContainer>
+            <RightContainer>
+                <LoginContainer>
+                    <LoginHeading>Wlcome To The FoodCourt..!</LoginHeading>
+                    <LoginInfo>Please Signing If You Not Account...!</LoginInfo>
+                    <Form>
+                        <InputContanier>
+                            <TextInput type="text" placeholder="Enter Your Name" />
+                        </InputContanier>
+                        <InputContanier>
+                            <TextInput type="email" placeholder="Enter Your Eamil" />
+                        </InputContanier>     
+                        <InputContanier>
+                            <TextInput type="email" placeholder="Enter Your Password" />
+                        </InputContanier>       
+                        <LoginButton to='/login'>Log In</LoginButton>     
+                        <ButtonContainer>
+                            <SubmitButton>Sign Up</SubmitButton>
+                            </ButtonContainer>                         
+                    </Form>
+                </LoginContainer>
 
 
-        </RightContainer>
+            </RightContainer>
 
-    </Container>
+        </Container>
   )
 }
 

@@ -25,7 +25,7 @@ export default function Login() {
                 </InputContanier>       
                 <LoginButton to='/'>Sign In</LoginButton>     
                 <ButtonContainer>
-                    <SubmitButton>Login Up</SubmitButton>
+                    <SubmitButton to='/dishes' >Login</SubmitButton>
                     </ButtonContainer>                         
             </Form>
         </LoginContainer>
