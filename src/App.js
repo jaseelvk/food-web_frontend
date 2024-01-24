@@ -5,6 +5,7 @@ import Login from './components/screens/Login'
 import Dishes from './components/screens/Dishes'
 import Dish from './components/screens/Dish'
 import Createpost from "./components/screens/CreatePost";
+import Delete from "./components/screens/Delete";
 
 export const userContext = React.createContext()
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
     <Route path='/' element={<Signup />} />
     <Route path='/login' element={<Login />} />
     <Route path='/dishes' element={<Dishes/>} />
+    <Route path="/delete/:id" element={<Delete/>} />
 
   
   </Routes>
