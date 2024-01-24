@@ -1,100 +1,84 @@
 import React,{useContext, useEffect, useState} from 'react'
 import Helmet from "react-helmet"
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate,Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import Header from '../includes/Header'
 import axios from "axios"
 import { userContext } from '../../App'
 
 
-export default function Dishes() {
-
+export default function Search() {
+    const [username, setUsername] = useState("")
+    const [isNav,setIsNav] = useState(false)
 	const [dishes , setDishes] = useState([])
-    const [category, setCategory] = useState([])
+	const [loading, setLoading] = useState(true);
 	const [selectedCategories, setSelectedCategories] = useState([]);
+    const [category, setCategory] = useState([])
+
+    const {q} = useParams()
 
 	const {userdata,updateUserData} = useContext(userContext)
 
 	const navigate = useNavigate()
-	
 
-	useEffect(()=>{
-		if (userdata?.access) {
-			if (selectedCategories.length !== 0) {
+    useEffect(()=>{
+
+            if (userdata?.access) {
 				const categoryFilter = selectedCategories.join(',');
 				navigate(`?filter=${categoryFilter}`);
-				axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
-					headers: {
-						Authorization: `Bearer ${userdata?.access}`,
-					},
-					params: { filter: categoryFilter },
-				})
-				.then(function(response) {
-					console.log(response.data.data);
-					setDishes(response.data.data);
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-			} else {
-				navigate("/");
-				axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
-					headers: {
-						Authorization: `Bearer ${userdata?.access}`,
-					},
-				})
-				.then(function(response) {
-					console.log(response.data.data);
-					setDishes(response.data.data);
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-			}
-    } else {
-        if (selectedCategories.length !== 0) {
+                axios.get(`http://127.0.0.1:8018/api/v1/dishes/`,
+                {   params: { 
+                    q: q ,
+                    filter : categoryFilter
+                },
+                    headers : {
+                    Authorization : `Bearer ${userdata?.access}`,
+                },
+                })
+                .then(function(response){
+                    console.log(response.data.data)
+                    setDishes(response.data.data)
+        
+        
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+        } else {
             const categoryFilter = selectedCategories.join(',');
             navigate(`?filter=${categoryFilter}`);
-            axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
-                params: { filter: categoryFilter },
+            axios.get(`http://127.0.0.1:8018/api/v1/dishes/`,
+            {   params: { 
+                    q: q ,
+                    filter : categoryFilter
+                },
+        
             })
-            .then(function(response) {
-                console.log(response.data.data);
-                setDishes(response.data.data);
+            .then(function(response){
+                console.log(response.data.data)
+                setDishes(response.data.data)
+    
+    
             })
-            .catch(function(error) {
-                console.log(error);
-            });
-        } else {
-            navigate("/");
-            axios.get("http://127.0.0.1:8018/api/v1/dishes/")
-            .then(function(response) {
-                console.log(response.data.data);
-                setDishes(response.data.data);
+            .catch(function(error){
+                console.log(error)
             })
-            .catch(function(error) {
-                console.log(error);
-            });
         }
-    }
+		
 	  
-		axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/",
+    axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/",)
+    .then(function(response){
+        console.log(response.data)
+        setCategory(response.data)
 
-		)
-		.then(function(response){
-			console.log(response.data)
-			setCategory(response.data)
+    })
+    .catch(function(error){
+        console.log(error)
+    })
+    setLoading(false);
+	},[selectedCategories, userdata, q])
 
-		})
-		.catch(function(error){
-			console.log(error)
-		})
-
-	
-
-	},[selectedCategories, userdata])
-
-	let handleLike = (id) => {
+    let handleLike = (id) => {
 
 		console.log(id)
 		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
@@ -122,18 +106,17 @@ export default function Dishes() {
 	let renderDishes=()=>{
 		return(
 			dishes.map((item)=>(
-				
 				<DishItem key = {item.id}    >
 						<ImageContainer>
 							<DishImage onClick={()=>navigate(`/dish/${item.id}`)} src={item.featured_image} alt="food" />
 						</ImageContainer>
 						<FoodDetails>
 							<FoodNameContainer>
-								<TitleContainer>
+                                <TitleContainer>
 									<FoodName>{item.dish_name}</FoodName>
 								</TitleContainer>
 								<FoodLike>
-									{(item.is_liked !== null) ? (
+                                {(item.is_liked !== null) ? (
 										 (item.is_liked == false) ?
 											(
 											   <LikeLink onClick={()=>handleLike(item.id)} ><LikeImage src={require("../images/heart1.png")} /></LikeLink>
@@ -144,23 +127,18 @@ export default function Dishes() {
 									)
 									:(<LikeLink  ><LikeImage src={require("../images/heart1.png")} /></LikeLink>)
 								}
-								
-								<LikeCount >{item.like} Likes</LikeCount>
+									<LikeCount>{item.like} likes</LikeCount>
 								</FoodLike>
 							</FoodNameContainer>
 							<PostedBy>{item.user_name}</PostedBy>
 							<PostedDate>{item.date}</PostedDate>
 						</FoodDetails>
 					</DishItem>
-			
-				
-				
 			))
-
 		)
-		
 	}
-	const handleCategoryChange = (categoryId,checked)=>{
+
+    const handleCategoryChange = (categoryId,checked)=>{
 
 		if (checked){
 			setSelectedCategories([...selectedCategories,categoryId])
@@ -168,13 +146,10 @@ export default function Dishes() {
 		else{
 			setSelectedCategories(selectedCategories.filter((id)=>id !== categoryId))
 		}
-		const categoryFilter = selectedCategories.join(',');
-	
-
 	}
 
-
-  return (
+	
+  return loading?(<h1>loading...</h1>) : (
     <>
     	<Helmet>
         	<title>Recipee</title>
@@ -185,13 +160,10 @@ export default function Dishes() {
 				<DisplayTitle>RECIPEE</DisplayTitle>
 				<DisplayTitle>Its Fun..!</DisplayTitle>
 				<DisplayTitle>Share, Try, Cook, Eat</DisplayTitle>
-
 			</DisplaySection>
 			<SectionDishes>
 				<LeftSectionDishes>
 					{renderDishes()}
-					
-
 				</LeftSectionDishes>
 				<RightSectionDishes>
 					<SectionCategories>
@@ -204,7 +176,6 @@ export default function Dishes() {
 										type='checkbox'
 										checked = {selectedCategories.includes(categories.id)}
 										onChange={(e)=> handleCategoryChange(categories.id, e.target.checked)}
-										
 									/>
 									<CategoryLabel for={categories.id}> {categories.name}</CategoryLabel>
 								</Category>
@@ -214,24 +185,18 @@ export default function Dishes() {
 				</RightSectionDishes>
 			</SectionDishes>
 		</MainContainer>
-	
-
     </>
   )
 }
-
 
 const MainContainer = styled.div`
 padding: 80px 0 0;
 @media (max-width:640px) {
 	padding: 60px 0 0;
-
-
-  
 }
 `
 const DisplaySection = styled.div`
-border-bottom: 4px#1b4040;
+border-bottom: 4px solid #ffaa11;
 width: 100%;
 height: 300px;
 background-image: url(${require("../images/food9.webp")});
@@ -239,26 +204,23 @@ background-repeat:no-repeat;
 background-size:contain;
 background-position:right 0 top 0;
 display: flex;
-background-color: #1b4040;
+background-color: #eef0f4;
 @media (max-width:1280px) {
 	height: 200px;
-  
 }
 @media (max-width:980px) {
-	height: 150px;
-  
+	height: 150px; 
 }
 @media (max-width:640px) {
 	height: 115px;
-	border-bottom: 2px solid #1b4040;
+	border-bottom: 2px solid #ffaa11;
 }
 @media (max-width:480px) {
 	display: none;
-
 }
 `
 const DisplayTitle = styled.h1`
-color: #1b4040;
+color: #381a5a;
 text-align: left;
 padding-left: 100px;
 padding-top: 50px;
@@ -267,7 +229,6 @@ height: 40px;
 font-weight: 900;
 @media (max-width:980px) {
 	display: none;
-  
 }
 `
 const SectionDishes = styled.div`
@@ -290,11 +251,8 @@ padding: 20px 50px;
 @media (max-width:640px) {
 	width:100%;
 	justify-content: center;
-
 }
-
 `
-
 const DishItem = styled.div`
 width: 30%;
 margin-top: 30px;
@@ -302,12 +260,10 @@ padding: 20px;
 @media (max-width:1080px) {
 	width: 33%;
 	margin-top: 20px;
-  
 }
 @media (max-width:980px) {
 	width: 48%;
 	margin-top: 20px;
-  
 }
 @media (max-width:640px) {
 	width: 90%;
@@ -322,21 +278,16 @@ height: 170px;
 
 @media (max-width:1280px) {
 	height: 150px;
-  
 }
 @media (max-width:1080px) {
 	height: 140px;
-  
 }
 @media (max-width:640px) {
 	height: 250px;
 	margin-bottom: 20px;
-  
 }
 @media (max-width:480px) {
 	height: 200px;
-
-  
 }
 @media (max-width:360px) {
 	margin-bottom: 10px;
@@ -350,8 +301,6 @@ border-radius: 8px;
 cursor:pointer;
 `
 const FoodDetails = styled.div`
-
-
 `
 const FoodNameContainer = styled.div`
 display: flex;
@@ -362,7 +311,6 @@ flex-direction: column-reverse;
 	height: 45px}
 
 `
-
 const TitleContainer = styled.div`
 align-items: left;
 width: 100%;
@@ -370,7 +318,6 @@ width: 100%;
 
 }
 `
-
 const FoodName = styled.h3`
 font-size: 18px;
 text-align: left;
@@ -379,15 +326,12 @@ text-align: left;
 }
 @media (max-width:1080px) {
 	font-size: 12px;
-
 }
 @media (max-width:640px) {
 	font-size: 16px;
 
 }
 `
-
-
 const FoodLike = styled.div`
 display: flex;
 align-items: end;
@@ -437,7 +381,6 @@ text-align: left;
 }
 @media (max-width:360px) {
 	font-size: 12px;
-
 }
 `
 const PostedDate = styled.h3`
@@ -451,39 +394,30 @@ text-align: left;
 }
 @media (max-width:640px) {
 	font-size: 14px;
-
 }
 @media (max-width:360px) {
 	font-size: 12px;
-
 }
 `
 const RightSectionDishes = styled.div`
-background-color: #1b4040;
+background-color:#1b4040;
 width: 25%;
 padding: 35px 30px;
-border-right: 4px solid #1b4040;
+border-right: 4px solid #ffaa11;
 min-height: 100vh;
 @media (max-width:768px){
 	padding: 20px 10px;
-
 }
 @media (max-width:640px) {
 	width:100%;
 	min-height: 0;
-	border: 2px solid #1b4040;
+	border: 2px solid #ffaa11;
 	border-top: 0;
 	padding: 10px;
-
-
-
 }
-
 `
-
 const SectionCategories = styled.div`
-
-
+background-color:#1b4040;
 `
 const CategoryTitle = styled.h1`
 margin-bottom: 30px;
@@ -495,11 +429,9 @@ font-style: italic;
 }
 @media (max-width:768px){
     font-size: 19px;
-
 }
 @media (max-width:640px){
 	margin-bottom: 10px;
-
 }
 `
 const CategoryLists = styled.ul`
@@ -517,18 +449,13 @@ margin-bottom: 20px;
 @media (max-width:640px) {
 	width: 30%;
 	margin-bottom: 10px;
-
 }
 `
 const CategoryCheckBox = styled.input`
-
 @media (max-width:640px){
 	width: 10px;
 	height: 10px;
-
-
 }
-
 `
 const CategoryLabel = styled.label`
 color: #fff;
@@ -537,16 +464,12 @@ font-style:italic;
 margin-left:15px;
 @media (max-width:1280px){
     font-size: 15px;
-
 }
 @media (max-width:640px){
     font-size: 12px;
-
 }
 `
 const SectionFilter = styled.div`
-
-
 `
 const SectionButton = styled.button`
 padding: 12px 16px;
@@ -556,7 +479,7 @@ width: 80%;
 color: #381a5a;
 font-size: 22px;
 font-weight: 600;
-background-color: #1b4040;
+background-color: #ffa90e;
 `
 
 
