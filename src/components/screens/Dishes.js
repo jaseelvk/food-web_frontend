@@ -231,7 +231,7 @@ padding: 80px 0 0;
 }
 `
 const DisplaySection = styled.div`
-border-bottom: 4px solid #ffaa11;
+border-bottom: 4px#1b4040;
 width: 100%;
 height: 300px;
 background-image: url(${require("../images/food9.webp")});
@@ -239,7 +239,7 @@ background-repeat:no-repeat;
 background-size:contain;
 background-position:right 0 top 0;
 display: flex;
-background-color: #eef0f4;
+background-color: #1b4040;
 @media (max-width:1280px) {
 	height: 200px;
   
@@ -250,7 +250,7 @@ background-color: #eef0f4;
 }
 @media (max-width:640px) {
 	height: 115px;
-	border-bottom: 2px solid #ffaa11;
+	border-bottom: 2px solid #1b4040;
 }
 @media (max-width:480px) {
 	display: none;
@@ -459,10 +459,10 @@ text-align: left;
 }
 `
 const RightSectionDishes = styled.div`
-background-color: #381a5a;
+background-color: #1b4040;
 width: 25%;
 padding: 35px 30px;
-border-right: 4px solid #ffaa11;
+border-right: 4px solid #1b4040;
 min-height: 100vh;
 @media (max-width:768px){
 	padding: 20px 10px;
@@ -471,7 +471,7 @@ min-height: 100vh;
 @media (max-width:640px) {
 	width:100%;
 	min-height: 0;
-	border: 2px solid #ffaa11;
+	border: 2px solid #1b4040;
 	border-top: 0;
 	padding: 10px;
 
@@ -555,7 +555,7 @@ width: 80%;
 color: #381a5a;
 font-size: 22px;
 font-weight: 600;
-background-color: #ffa90e;
+background-color: #1b4040;
 `
 
 
