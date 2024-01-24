@@ -133,7 +133,7 @@ export default function Dish() {
 						<DetailSection>
 							<PostedBy>{recipee.user_name}</PostedBy>
 							<PostLike>
-								{ (isLiked === false) ?
+								{ (isLiked == false) ?
 								 (
 									<LikeLink onClick={handleLike} ><LikeImage src={require("../images/heart1.png")} /></LikeLink>
 								 ):
