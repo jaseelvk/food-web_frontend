@@ -88,7 +88,7 @@ width: 100%;
  
 const Top = styled.div` 
 position: relative; 
-background-color:#7d3538;; 
+background-color: #1b4040;; 
 display: flex; 
 justify-content: space-between; 
 align-items: center; 

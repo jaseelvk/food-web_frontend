@@ -3,6 +3,7 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import Signup from './components/screens/Signup'
 import Login from './components/screens/Login'
 import Dishes from './components/screens/Dishes'
+import Dish from './components/screens/Dish'
 
 export const userContext = React.createContext()
 export default function App() {
@@ -28,9 +29,11 @@ export default function App() {
 <userContext.Provider value={{userdata , updateUserData}}>
 <Router>
   <Routes>
+    <Route path="/dish/:id" element={<Dish/>} />
     <Route path='/' element={<Signup />} />
     <Route path='/login' element={<Login />} />
     <Route path='/dishes' element={<Dishes/>} />
+
   
   </Routes>
 </Router>
