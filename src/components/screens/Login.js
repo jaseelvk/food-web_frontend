@@ -58,7 +58,7 @@ export default function () {
     <LeftContainer>
         <HeaderContainer>
             <Logo
-                src={require("../images/2.jpg")}
+                src={require("../images/logo.jpg")}
                 alt="Image"
             />
         </HeaderContainer>
