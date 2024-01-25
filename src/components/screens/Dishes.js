@@ -234,7 +234,7 @@ const DisplaySection = styled.div`
 border-bottom: 4px solid  #1b4040;
 width: 100%;
 height: 300px;
-background-image: url(${require("../images/food9.webp")});
+background-image: url(${require("../images/logo.jpg")});
 background-repeat:no-repeat;
 background-size:contain;
 background-position:right 0 top 0;
