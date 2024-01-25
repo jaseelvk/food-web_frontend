@@ -11,7 +11,7 @@ export default function Favourite() {
 	const navigate = useNavigate()
 
 	useEffect(()=>{
-		axios.get("http://127.0.0.1:8018/api/v1/dishes/",
+		axios.get("http://127.0.0.1:8000/api/v1/dishes/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},
@@ -59,14 +59,14 @@ export default function Favourite() {
     let handleLike = (id) => {
 
 		console.log(id)
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/likes/${id}/`,{},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
 	})
 		.then(function(response){
 			console.log(response.data)
-			axios.get("http://127.0.0.1:8018/api/v1/dishes/",
+			axios.get("http://127.0.0.1:8000/api/v1/dishes/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},

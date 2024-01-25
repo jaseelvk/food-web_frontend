@@ -21,7 +21,7 @@ export default function Edit() {
 
     const {id} = useParams()
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:8018/api/v1/dishes/editRecipee/${id}/`)
+        axios.get(`http://127.0.0.1:8000/api/v1/dishes/editRecipee/${id}/`)
         .then(function(response){
             console.log(response.data.data)
             setData(response.data.data)
@@ -34,7 +34,7 @@ export default function Edit() {
         })
 
 
-        axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/")
+        axios.get("http://127.0.0.1:8000/api/v1/dishes/create/get_categories/")
         .then(function(response){
             console.log(response.data)
             setCategory(response.data)
@@ -105,7 +105,7 @@ export default function Edit() {
 
         axios({
             method : "post",
-            url : `http://127.0.0.1:8018/api/v1/dishes/mypost/edit/${id}/`,
+            url : `http://127.0.0.1:8000/api/v1/dishes/mypost/edit/${id}/`,
             data : formField,
             headers: {
                 Authorization: `Bearer ${userdata?.access}`,

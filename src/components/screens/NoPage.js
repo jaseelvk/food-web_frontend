@@ -16,7 +16,7 @@ export default function NoPage() {
 }
 
 const SectionMain = styled.div`
-    background-color: #1b4040;
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;

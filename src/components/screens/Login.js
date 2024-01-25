@@ -32,18 +32,18 @@ export default function Login() {
         setMessage("")
         e.preventDefault();
 
-        axios.post(`http://127.0.0.1:8018/api/v1/auth/token/`,{username,password})
+        axios.post(`http://127.0.0.1:8000/api/v1/auth/token/`,{username,password})
         .then((response)=>{
             
             console.log(response);
            let  {data} = response;
             localStorage.setItem("user_data",JSON.stringify(data));
             updateUserData ({type : "LOGIN", payload : data});
-            if (nextpath ){navigate(nextpath)}else {navigate("/")}
+            {navigate("/")}
         })
         .catch((error)=>{
             console.log(error.message)
-            if (error.response.status == 401){
+            if (error.response.status === 401){
                 setMessage(error.response.data.detail)
 
             }
@@ -69,7 +69,7 @@ export default function Login() {
             <LoginInfo>Enter email and password to login</LoginInfo>
             <Form onSubmit={handleSubmit} > 
                 <InputContainer>
-                    <TextInput type="email"  placeholder="Email" value={username} onChange={(e)=>setUsername(e.target.value)} />
+                    <TextInput type="text"  placeholder="Email" value={username} onChange={(e)=>setUsername(e.target.value)} />
                 </InputContainer>
                 <InputContainer>
                     <TextInput type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}  />

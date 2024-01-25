@@ -22,7 +22,7 @@ export default function Createpost() {
 
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/")
+        axios.get("http://127.0.0.1:8000/api/v1/dishes/create/get_categories/")
         .then(function(response){
             console.log(response.data)
             setCategory(response.data)
@@ -71,17 +71,13 @@ export default function Createpost() {
         
         axios({
             method : "post",
-            url : "http://127.0.0.1:8018/api/v1/dishes/create/",
+            url : "http://127.0.0.1:8000/api/v1/dishes/create/",
             data : formField,
             headers: {
                 Authorization: `Bearer ${userdata?.access}`,
               },
         },)
-        // .post("http://127.0.0.1:8018/api/v1/dishes/create/", formData, {
-        //     headers: {
-        //       "Content-Type": "multipart/form-data",
-        //     },
-        //   })
+
         .then(function(response){
             console.log(response.data)
             navigate("/")
@@ -175,7 +171,7 @@ background-color: #1b4040;
 }
 `
 const CreatePostForm = styled.form`
-background-color: #1b4040;
+background-color: #ffaa11;
 padding: 50px;
 border-radius: 12px;
 @media (max-width:480px) {

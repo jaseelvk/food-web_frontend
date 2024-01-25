@@ -23,7 +23,7 @@ export default function Dishes() {
 			if (selectedCategories.length !== 0) {
 				const categoryFilter = selectedCategories.join(',');
 				navigate(`?filter=${categoryFilter}`);
-				axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
+				axios.get("http://127.0.0.1:8000/api/v1/dishes/", {
 					headers: {
 						Authorization: `Bearer ${userdata?.access}`,
 					},
@@ -38,7 +38,7 @@ export default function Dishes() {
 				});
 			} else {
 				navigate("/");
-				axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
+				axios.get("http://127.0.0.1:8000/api/v1/dishes/", {
 					headers: {
 						Authorization: `Bearer ${userdata?.access}`,
 					},
@@ -55,7 +55,7 @@ export default function Dishes() {
         if (selectedCategories.length !== 0) {
             const categoryFilter = selectedCategories.join(',');
             navigate(`?filter=${categoryFilter}`);
-            axios.get("http://127.0.0.1:8018/api/v1/dishes/", {
+            axios.get("http://127.0.0.1:8000/api/v1/dishes/", {
                 params: { filter: categoryFilter },
             })
             .then(function(response) {
@@ -67,7 +67,7 @@ export default function Dishes() {
             });
         } else {
             navigate("/");
-            axios.get("http://127.0.0.1:8018/api/v1/dishes/")
+            axios.get("http://127.0.0.1:8000/api/v1/dishes/")
             .then(function(response) {
                 console.log(response.data.data);
                 setDishes(response.data.data);
@@ -78,7 +78,7 @@ export default function Dishes() {
         }
     }
 	  
-		axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/",
+		axios.get("http://127.0.0.1:8000/api/v1/dishes/create/get_categories/",
 
 		)
 		.then(function(response){
@@ -97,14 +97,14 @@ export default function Dishes() {
 	let handleLike = (id) => {
 
 		console.log(id)
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/likes/${id}/`,{},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
 	})
 		.then(function(response){
 			console.log(response.data)
-			axios.get("http://127.0.0.1:8018/api/v1/dishes/",
+			axios.get("http://127.0.0.1:8000/api/v1/dishes/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},
@@ -507,6 +507,7 @@ display: flex;
 align-items: start;
 justify-content: start;
 flex-direction: column;
+list-style: none;
 @media (max-width:640px) {
 	flex-direction: row;
 	flex-wrap: wrap;

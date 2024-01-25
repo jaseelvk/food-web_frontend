@@ -40,8 +40,8 @@ export default function Header() {
                     </SectionMiddle> 
                     <SectionRight> 
                         <NavList> 
-                            <NavImageContainer to= "/add" title='addpost' ><NavImages src={require("../images/create.png")} /></NavImageContainer> 
-                            <NavImageContainer to= "/favourite" title= 'favourites'><NavImagesFav src={require("../images/favourite.png")} /></NavImageContainer> 
+                            <NavImageContainer to= "/createpost" title='addpost' ><NavImages src={require("../images/create.png")} /></NavImageContainer> 
+                            <NavImageContainer to= "/favorite" title= 'favourites'><NavImagesFav src={require("../images/favourite.png")} /></NavImageContainer> 
                             <NavImageContainer to= "/mypost" title='mypost' ><NavImages src={require("../images/edit.svg").default} /></NavImageContainer> 
                         </NavList> 
                          

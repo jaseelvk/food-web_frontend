@@ -13,7 +13,7 @@ export default function Mypost() {
 	const navigate = useNavigate()
 
 	useEffect(()=>{
-		axios.get("http://127.0.0.1:8018/api/v1/dishes/mypost/",
+		axios.get("http://127.0.0.1:8000/api/v1/dishes/mypost/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},
@@ -74,7 +74,7 @@ export default function Mypost() {
 	
 		axios({
 			method: "post",
-			url: `http://127.0.0.1:8018/api/v1/dishes/mypost/delete/${id}/`,
+			url: `http://127.0.0.1:8000/api/v1/dishes/mypost/delete/${id}/`,
 			data: formField,
 			headers: {
 				Authorization: `Bearer ${userdata?.access}`,
@@ -94,14 +94,14 @@ export default function Mypost() {
 	let handleLike = (id) => {
 
 		console.log(id)
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/likes/${id}/`,{},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
 	})
 		.then(function(response){
 			console.log(response.data)
-			axios.get("http://127.0.0.1:8018/api/v1/dishes/mypost/",
+			axios.get("http://127.0.0.1:8000/api/v1/dishes/mypost/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},

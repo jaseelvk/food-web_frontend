@@ -26,7 +26,7 @@ export default function Search() {
             if (userdata?.access) {
 				const categoryFilter = selectedCategories.join(',');
 				navigate(`?filter=${categoryFilter}`);
-                axios.get(`http://127.0.0.1:8018/api/v1/dishes/`,
+                axios.get(`http://127.0.0.1:8000/api/v1/dishes/`,
                 {   params: { 
                     q: q ,
                     filter : categoryFilter
@@ -47,7 +47,7 @@ export default function Search() {
         } else {
             const categoryFilter = selectedCategories.join(',');
             navigate(`?filter=${categoryFilter}`);
-            axios.get(`http://127.0.0.1:8018/api/v1/dishes/`,
+            axios.get(`http://127.0.0.1:8000/api/v1/dishes/`,
             {   params: { 
                     q: q ,
                     filter : categoryFilter
@@ -66,7 +66,7 @@ export default function Search() {
         }
 		
 	  
-    axios.get("http://127.0.0.1:8018/api/v1/dishes/create/get_categories/",)
+    axios.get("http://127.0.0.1:8000/api/v1/dishes/create/get_categories/",)
     .then(function(response){
         console.log(response.data)
         setCategory(response.data)
@@ -81,14 +81,14 @@ export default function Search() {
     let handleLike = (id) => {
 
 		console.log(id)
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/likes/${id}/`,{},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
 	})
 		.then(function(response){
 			console.log(response.data)
-			axios.get("http://127.0.0.1:8018/api/v1/dishes/",
+			axios.get("http://127.0.0.1:8000/api/v1/dishes/",
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},

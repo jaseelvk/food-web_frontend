@@ -20,7 +20,7 @@ export default function Dish() {
 
 
 	useEffect(()=>{
-		axios.get(`http://127.0.0.1:8018/api/v1/dishes/view/${id}/`,
+		axios.get(`http://127.0.0.1:8000/api/v1/dishes/view/${id}/`,
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
@@ -36,7 +36,7 @@ export default function Dish() {
 			console.log(error)
 		})
 
-		axios.get(`http://127.0.0.1:8018/api/v1/dishes/list/comments/${id}/`,
+		axios.get(`http://127.0.0.1:8000/api/v1/dishes/list/comments/${id}/`,
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
@@ -56,7 +56,7 @@ export default function Dish() {
 	let handleLike = (e) => {
 		e.preventDefault()
 
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/likes/${id}/`,{},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/likes/${id}/`,{},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
@@ -64,7 +64,7 @@ export default function Dish() {
 		.then(function(response){
 			console.log(response.data)
 			axios
-			.get(`http://127.0.0.1:8018/api/v1/dishes/view/${id}/`, {
+			.get(`http://127.0.0.1:8000/api/v1/dishes/view/${id}/`, {
 			   headers: {
 					Authorization: `Bearer ${userdata?.access}`,
 			   },
@@ -85,14 +85,14 @@ export default function Dish() {
 	let handleCommentSubmit = (e)=>{
 		e.preventDefault()
 
-		axios.post(`http://127.0.0.1:8018/api/v1/dishes/comment/${id}/`,{comment : comment},
+		axios.post(`http://127.0.0.1:8000/api/v1/dishes/comment/${id}/`,{comment : comment},
 		{headers : {
 			Authorization : `Bearer ${userdata?.access}`,
 		},
 		
 		})
 		.then(function (response) {
-			axios.get(`http://127.0.0.1:8018/api/v1/dishes/list/comments/${id}/`,
+			axios.get(`http://127.0.0.1:8000/api/v1/dishes/list/comments/${id}/`,
 			{headers : {
 				Authorization : `Bearer ${userdata?.access}`,
 			},

@@ -17,7 +17,7 @@ export default function Profile() {
 
 
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8018/api/v1/dishes/profile/view/",
+        axios.get("http://127.0.0.1:8000/api/v1/dishes/profile/view/",
         {headers : {
             Authorization : `Bearer ${userdata?.access}`,
         },
@@ -43,7 +43,7 @@ export default function Profile() {
         }
         axios({
             method : "post",
-            url: "http://127.0.0.1:8018/api/v1/dishes/profile/",
+            url: "http://127.0.0.1:8000/api/v1/dishes/profile/",
             data : formField,
             headers : {
                 Authorization : `Bearer ${userdata?.access}`,
