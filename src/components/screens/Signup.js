@@ -1,42 +1,78 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import styled from 'styled-components'
+import React,{useState, useContext} from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import axios from 'axios';
+
 
 export default function Signup() {
+
+    const  [email, setEmail] = useState("")
+    const  [password, setPassword] = useState("")
+    const  [name, setName] = useState("")
+    const  [message, setMessage] = useState("")
+
+    const navigate = useNavigate()
+    let handleSubmit = (e) =>{
+        setMessage("")
+        e.preventDefault()
+        axios.post(`http://127.0.0.1:8000/api/v1/auth/create/`,{name,password,email})
+        .then((response) =>{
+            let data = response.data.data
+            let statuscode = response.data.status_code
+            if (statuscode == 6000){
+                console.log(response.data.data)
+                localStorage.getItem("user_data", JSON.stringify(data))
+                navigate("/login/")
+            }
+            else{
+                setMessage(response.data.message)
+            }
+            
+        })
+        .catch((error)=>{
+            console.log(error.message)
+            if (error.response.status == 401){
+                setMessage(error.response.data.detail)
+
+            }
+        })
+
+
+    }
   return (
-        <Container>
-            <LeftContainer>
-                <HeaderContainer>
-                    <Logo src= {require("../images/logo.jpg")}
-                    />
-                </HeaderContainer>
-            </LeftContainer>
-            <RightContainer>
-                <LoginContainer>
-                    <LoginHeading>Welcome To The FoodCourt..!</LoginHeading>
-                    <LoginInfo>Please Signing If You Not an Account...!</LoginInfo>
-                    <Form>
-                        <InputContanier>
-                            <TextInput type="text" placeholder="Enter Your Name" />
-                        </InputContanier>
-                        <InputContanier>
-                            <TextInput type="email" placeholder="Enter Your Eamil" />
-                        </InputContanier>     
-                        <InputContanier>
-                            <TextInput type="email" placeholder="Enter Your Password" />
-                        </InputContanier>       
-                        <LoginButton to='/login'>Log In</LoginButton>     
-                        <ButtonContainer>
-                            <SubmitButton>Sign Up</SubmitButton>
-                            </ButtonContainer>                         
-                    </Form>
-                </LoginContainer>
-
-
-            </RightContainer>
-
-        </Container>
-  )
+<Container>
+    <LeftContainer>
+        <HeaderContainer>
+            <Logo
+                src={require("../images/2.jpg")}
+                alt="Image"
+            />
+        </HeaderContainer>
+    </LeftContainer>
+    <RightContainer>
+        <LoginContainer>
+            <LoginHeading>Register into Account</LoginHeading>
+            <LoginInfo>Create an account to acccess all the features</LoginInfo>
+            <Form onSubmit={handleSubmit} > 
+                <InputContainer>
+                    <TextInput type="text" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} />
+                </InputContainer>
+                <InputContainer>
+                    <TextInput type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                </InputContainer>
+                <InputContainer>
+                    <TextInput type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                </InputContainer>
+                <LoginButton to="/login">Log in</LoginButton>
+                {message && <ErrorMessage>{message}</ErrorMessage>}
+                <ButtonContainer>
+                    <SubmitButton>Sign up</SubmitButton>
+                </ButtonContainer>
+            </Form>
+        </LoginContainer>
+    </RightContainer>
+</Container>
+);
 }
 
 const Container = styled.div`
