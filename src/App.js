@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import styled from "styled-components";
 import Signup from './components/screens/Signup'
 import Login from './components/screens/Login'
 import Dishes from './components/screens/Dishes'
@@ -12,10 +13,15 @@ import Mypost from "./components/screens/MyPost";
 import Profile from "./components/screens/Profile";
 import EditProfile from "./components/screens/EditProfile";
 import Search from "./components/screens/Search";
+import PrivateRoute from "./components/screens/PrivateRoute";
 
 export const userContext = React.createContext()
 export default function App() {
   const [userdata, setUserdata] = useState({});
+  const [loading, setLoading] = useState(true);
+
+
+
   const updateUserData = (action) =>{
 
 	  switch(action.type){
@@ -24,30 +30,39 @@ export default function App() {
 		  localStorage.clear();
 		  break;
 		case "LOGIN" :
-		  setUserdata(action.payload);
 		  break;
 		default :
 		  break;
   
 	  }
   
-	};  
-  return (
+	};useEffect(() =>{
+	  setUserdata(JSON.parse(localStorage.getItem("user_data")));
+	  setLoading(false);
+  
+	},[]);
+
+
+
+
+  return loading?(<Loading><LoadingTitle></LoadingTitle></Loading>) :  (
 <>
 <userContext.Provider value={{userdata , updateUserData}}>
 <Router>
   <Routes>
-    <Route path="/dish/:id" element={<Dish/>} />
-    <Route path="/createpost" element={<Createpost/>} />
-    <Route path='/' element={<Signup />} />
+    <Route element={<PrivateRoute/>}>
+      <Route path="/dish/:id" element={<Dish/>} />
+      <Route path="/createpost" element={<Createpost/>} />
+      <Route path='/mypost' element={<Mypost/>} />
+      <Route path="/delete/:id" element={<Delete/>} />
+      <Route path='/edit/:id' element={<Edit/>} />
+      <Route path='/favorite' element={<Favourite/>} />
+      <Route path='/profile' element={<Profile/>} />
+      <Route path='/editprofile/edit' element={<EditProfile/>} />
+    </Route>
+    <Route path='/signup' element={<Signup />} />
     <Route path='/login' element={<Login />} />
-    <Route path='/dishes' element={<Dishes/>} />
-    <Route path="/delete/:id" element={<Delete/>} />
-    <Route path='/edit/:id' element={<Edit/>} />
-    <Route path='/favorite' element={<Favourite/>} />
-    <Route path='/mypost' element={<Mypost/>} />
-    <Route path='/profile' element={<Profile/>} />
-    <Route path='/editprofile/edit' element={<EditProfile/>} />
+    <Route path='/' element={<Dishes/>} />
     <Route path='/:q/' element={<Search/>} />
   </Routes>
 </Router>
@@ -57,3 +72,15 @@ export default function App() {
 </>
   )
 }
+const Loading = styled.div`
+width: 100%;
+height: 100vh;
+background-color: #ffaa11;
+display: flex;
+align-items: center;
+justify-content: center;
+`
+const LoadingTitle = styled.h1`
+font-size: 700px;
+color: #381a5a;
+`

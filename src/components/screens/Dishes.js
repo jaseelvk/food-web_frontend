@@ -177,7 +177,7 @@ export default function Dishes() {
   return (
     <>
     	<Helmet>
-        	<title>Recipee</title>
+        	<title>Food Court | Dishes</title>
       	</Helmet>
 		<Header/>
 		<MainContainer>
@@ -231,7 +231,7 @@ padding: 80px 0 0;
 }
 `
 const DisplaySection = styled.div`
-border-bottom: 4px#1b4040;
+border-bottom: 4px solid  #1b4040;
 width: 100%;
 height: 300px;
 background-image: url(${require("../images/food9.webp")});
@@ -239,7 +239,7 @@ background-repeat:no-repeat;
 background-size:contain;
 background-position:right 0 top 0;
 display: flex;
-background-color: #1b4040;
+background-color: #eef0f4;
 @media (max-width:1280px) {
 	height: 200px;
   
@@ -250,7 +250,7 @@ background-color: #1b4040;
 }
 @media (max-width:640px) {
 	height: 115px;
-	border-bottom: 2px solid #1b4040;
+	border-bottom: 2px solid  #1b4040;
 }
 @media (max-width:480px) {
 	display: none;

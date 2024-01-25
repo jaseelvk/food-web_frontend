@@ -42,7 +42,7 @@ export default function Header() {
                         <NavList> 
                             <NavImageContainer to= "/add" title='addpost' ><NavImages src={require("../images/create.png")} /></NavImageContainer> 
                             <NavImageContainer to= "/favourite" title= 'favourites'><NavImagesFav src={require("../images/favourite.png")} /></NavImageContainer> 
-                            <NavImageContainer to= "/mypost" title='mypost' ><NavImages src={require("../images/edit.svg")} /></NavImageContainer> 
+                            <NavImageContainer to= "/mypost" title='mypost' ><NavImages src={require("../images/edit.svg").default} /></NavImageContainer> 
                         </NavList> 
                          
                         <NavList> 

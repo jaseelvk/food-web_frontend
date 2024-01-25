@@ -1,6 +1,7 @@
 import { useEffect, useState,useContext} from 'react'
 import Header from '../includes/Header'
 import styled from 'styled-components'
+import Helmet from "react-helmet"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { userContext } from '../../App'
@@ -118,7 +119,11 @@ export default function Createpost() {
 
   return (
     <>
+        <Helmet>
+        	<title>Food Court | CreatePost</title>
+      	</Helmet>
         <Header/>
+        
         <CreatePage>
             <CreatePostForm onSubmit={formsubmit} >
                 <TitleContainer>

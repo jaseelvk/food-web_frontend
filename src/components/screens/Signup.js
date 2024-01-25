@@ -192,7 +192,7 @@ color: #fff;
 width: 100%;
 display: block;
  `;
-const InputContanier = styled.div`
+const InputContainer = styled.div`
 margin-bottom: 15px;
 position: relative;
 &:before {
@@ -261,4 +261,10 @@ font-weight: 600;
     font-size: 16px;
     
 }
+`
+const ErrorMessage = styled.p`
+font-size: 17px;
+color: red;
+margin-bottom: 25px;
+text-align: center;
 `

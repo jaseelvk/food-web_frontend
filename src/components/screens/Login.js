@@ -6,7 +6,7 @@ import axios from 'axios';
 import { userContext } from '../../App';
 
 
-export default function () {
+export default function Login() {
 
 
 
@@ -77,7 +77,7 @@ export default function () {
                 <LoginButton to="/signup">Signup Now</LoginButton>
                 {message && <ErrorMessage>{message}</ErrorMessage>}
                 <ButtonContainer>
-                    <SubmitButton>Login</SubmitButton>
+                    <SubmitButton >Login</SubmitButton>
                 </ButtonContainer>
             </Form>
         </LoginContainer>
@@ -203,7 +203,7 @@ color: #fff;
 width: 100%;
 display: block;
  `;
-const InputContanier = styled.div`
+const InputContainer = styled.div`
 margin-bottom: 15px;
 position: relative;
 &:before {
@@ -273,3 +273,9 @@ font-weight: 600;
     
 }
 `;
+const ErrorMessage = styled.p`
+font-size: 17px;
+color: red;
+margin-bottom: 25px;
+text-align: center;
+`
