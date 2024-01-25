@@ -172,7 +172,7 @@ border: 0px;
 } 
 ` 
 const SectionRight = styled.div` 
-width: 40%; 
+width: 27%; 
 display: flex; 
 align-items: center; 
 margin-left: 20px; 
@@ -209,16 +209,7 @@ background-color: #a5a0a0;
 border-radius: 12px; 
  
 ` 
-const SignupButton = styled(Link)` 
-padding: 12px 16px; 
-background-color: #381a5a; 
-font-size: 20px; 
-font-weight: 600; 
-border-radius: 10px; 
-display: block; 
-color: #ffaa11 ; 
- 
-` 
+
 const SectionMainNav = styled.div` 
 display: none; 
 z-index:1; 

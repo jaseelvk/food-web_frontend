@@ -14,6 +14,7 @@ import Profile from "./components/screens/Profile";
 import EditProfile from "./components/screens/EditProfile";
 import Search from "./components/screens/Search";
 import PrivateRoute from "./components/screens/PrivateRoute";
+import NoPage from "./components/screens/NoPage";
 
 export const userContext = React.createContext()
 export default function App() {
@@ -64,6 +65,7 @@ export default function App() {
     <Route path='/login' element={<Login />} />
     <Route path='/' element={<Dishes/>} />
     <Route path='/:q/' element={<Search/>} />
+    <Route path='*' element={<NoPage/>} />
   </Routes>
 </Router>
 

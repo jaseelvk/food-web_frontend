@@ -152,7 +152,7 @@ export default function Search() {
   return loading?(<h1>loading...</h1>) : (
     <>
     	<Helmet>
-        	<title>Recipee</title>
+        	<title>Food Court</title>
       	</Helmet>
 		<Header/>
 		<MainContainer>
